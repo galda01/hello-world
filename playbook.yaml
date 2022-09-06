@@ -20,7 +20,9 @@
       - restart_apache2
 
   handlers:
-    - name: restart_apache2
-      service:
-        name: apache2
-        state: restarted
+  - name: restart_apache2
+    service:
+      name: apache2
+      state: restarted
+      enabled: yes
+
