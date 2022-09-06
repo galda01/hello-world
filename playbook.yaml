@@ -12,8 +12,8 @@
   - name: Create the webserver Document Root
     ansible.builtin.file:
       path: "/var/www/html/{{ fqdn }}/public"
-      owner: apache
-      group: apache
+      owner: root
+      group: root
       mode: '1644' 
 
   - name: Create a basic Website landing page.
