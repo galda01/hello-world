@@ -7,7 +7,7 @@
 
   tasks:
   - name: Install Apache
-    apt: name=apache2 update_cache=yes state=started
+    apt: name=apache2 update_cache=yes state=restarted
 
   - name: Create the webserver Document Root
     ansible.builtin.file:
@@ -23,12 +23,12 @@
        mode: 0644
        owner: root
        group: root
-    notify:
-      - Restart apache
+#    notify:
+#      - Restart apache
 
-  handlers:
-  - name: Restart apache
-    ansible.builtin.service:
-      name: apache2
-      state: restarted
+#  handlers:
+#  - name: Restart apache
+#    ansible.builtin.service:
+#      name: apache2
+#      state: restarted
 
