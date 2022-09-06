@@ -12,17 +12,24 @@
   - name: Create the webserver Document Root
     ansible.builtin.file:
       path: "/var/www/html/{{ fqdn }}/public"
-      owner: root
-      group: root
-      mode: '1644' 
+      state: directory
+      mode: '0755' 
 
   - name: Create a basic Website landing page.
     template:
        src: vhost.conf.j2
-       dest: /etc/apache2/sites-enabled/{ fqdn }}.conf"
+       dest: "/etc/apache2/sites-available/{ fqdn }}.conf"
        mode: 0644
        owner: root
        group: root
+       
+  - name: Create a symbolic link
+    ansible.builtin.file:
+      src: "/etc/apache2/sites-available/{ fqdn }}.conf"
+      dest: "/etc/apache2/sites-enabled/{ fqdn }}.conf"
+      owner: root
+      group: root
+      state: link
 
   - name: Restart service apache2
     ansible.builtin.service:
