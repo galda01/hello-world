@@ -9,8 +9,8 @@
 
         ServerName {{ fqdn }}
         ServerAdmin support@{{ fqdn }}
-        ErrorLog logs/{{ fqdn }}_log
-        CustomLog logs/{{ fqdn }}_log common
+        # ErrorLog logs/{{ fqdn }}_log
+        # CustomLog logs/{{ fqdn }}_log common
         DocumentRoot /var/www/html/{{ fqdn }}/public
 
 </VirtualHost>
