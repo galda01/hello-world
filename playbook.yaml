@@ -17,8 +17,8 @@
 
   - name: Place a demo landing page.
     copy:
-       src: files/index.html
-       dest: "/var/www/html/{ fqdn }}/public/index.html"
+      src: files/index.html
+      dest: "/var/www/html/{ fqdn }}/public/index.html"
       owner: root
       group: root
       mode: 0644
