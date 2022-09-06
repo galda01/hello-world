@@ -24,12 +24,13 @@
        owner: root
        group: root
     notify:
-      - restart_apache2
+      - Restart apache
 
   handlers:
-  - name: restart_apache2
-    service:
+  - name: Restart apache
+    ansible.builtin.service:
       name: apache2
-      state: restart
+      state: restarted
+
       enabled: yes
 
