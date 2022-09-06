@@ -9,6 +9,13 @@
   - name: Install Apache
     apt: name=apache2 update_cache=yes state=started
 
+  - name: Create the webserver Document Root
+    ansible.builtin.file:
+      path: "/var/www/html/{{ fqdn }}/public"
+      owner: apache
+      group: apache
+      mode: '1644' 
+
   - name: Create a basic Website landing page.
     template:
        src: vhost.conf.j2
