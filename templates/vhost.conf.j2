@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+
+       <Directory /var/www/html/{{ fqdn }}/public>
+          php_admin_value open_basedir "/var/www/html/{{ fqdn }}/public:/tmp"
+          AllowOverride All
+          Order allow,deny
+          allow from all
+        </Directory>
+
+        ServerName {{ fqdn }}
+        ServerAdmin support@{{ fqdn }}
+        ErrorLog logs/{{ fqdn }}_log
+        CustomLog logs/{{ fqdn }}_log common
+        DocumentRoot /var/www/html/{{ fqdn }}/public
+
+</VirtualHost>
