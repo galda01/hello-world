@@ -13,41 +13,37 @@
 
   - name: Create the webserver Document Root
     ansible.builtin.file:
-      path: "/var/www/html/{{ fqdn }}/public"
+      path: "/var/www/html/{{ item }}/public"
       state: directory
       mode: '0755' 
-    loop:
-      "{{ fqdn }}"
+    with_items: "{{ fqdn }}"
 
   - name: Place a demo landing page
     copy:
       src: files/index.html
-      dest: "/var/www/html/{{ fqdn }}/public/index.html"
+      dest: "/var/www/html/{{ item }}/public/index.html"
       owner: root
       group: root
       mode: 0644
-    loop:
-      "{{ fqdn }}"
+    with_items: "{{ fqdn }}"
        
   - name: Copy the template vhost file into place
     template:
       src: templates/vhost.conf.j2
-      dest: "/etc/apache2/sites-available/{{ fqdn }}.conf"
+      dest: "/etc/apache2/sites-available/{{ item }}.conf"
       owner: root
       group: root
       mode: '0644'
-    loop:
-      "{{ fqdn }}"
+    with_items: "{{ fqdn }}"
       
   - name: Create a symbolic link
     ansible.builtin.file:
-      src: "/etc/apache2/sites-available/{{ fqdn }}.conf"
-      dest: "/etc/apache2/sites-enabled/{{ fqdn }}.conf"
+      src: "/etc/apache2/sites-available/{{ item }}.conf"
+      dest: "/etc/apache2/sites-enabled/{{ item }}.conf"
       owner: root
       group: root
       state: link
-    loop:
-      "{{ fqdn }}"
+    with_items: "{{ fqdn }}"
 
   - name: Restart service apache2
     ansible.builtin.service:
