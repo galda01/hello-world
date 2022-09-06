@@ -15,6 +15,14 @@
       state: directory
       mode: '0755' 
 
+  - name: Place a demo landing page.
+    copy:
+       src: files/index.html
+       dest: "/var/www/html/{ fqdn }}public/index.html"
+      owner: root
+      group: root
+      mode: 0644
+
   - name: Create a basic Website landing page.
     template:
        src: vhost.conf.j2
