@@ -7,7 +7,7 @@
 
   tasks:
   - name: Install Apache
-    apt: name=apache2 update_cache=yes state=restarted
+    apt: name=apache2 update_cache=yes state=reload
 
   - name: Create the webserver Document Root
     ansible.builtin.file:
