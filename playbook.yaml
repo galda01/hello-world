@@ -22,14 +22,6 @@
       owner: root
       group: root
       mode: 0644
-
-  - name: Create a basic Website landing page.
-    template:
-       src: vhost.conf.j2
-       dest: "/etc/apache2/sites-available/{ fqdn }}.conf"
-       mode: 0644
-       owner: root
-       group: root
        
   - name: Create a symbolic link
     ansible.builtin.file:
