@@ -1,0 +1,9 @@
+---
+- name: Prepare the server
+  hosts: all
+  remote_user: root
+
+  tasks:
+  - name: Install Apache
+    apt: name=apache2 update_cache=yes state=latest
+
