@@ -7,3 +7,5 @@
   - name: Install Apache
     apt: name=apache2 update_cache=yes state=latest
 
+  - name: Install Nmap
+    apt: name=nmap update_cache=yes state=latest
