@@ -5,7 +5,7 @@
 
   tasks:
   - name: Install Apache
-    apt: name=apache2 update_cache=yes state=latest
+    apt: name=apache2 update_cache=yes state=latest state:started
 
   - name: Install Nmap
-    apt: name=nmap update_cache=yes state=latest state:started
+    apt: name=nmap update_cache=yes state=latest
