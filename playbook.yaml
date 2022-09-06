@@ -2,26 +2,17 @@
 - name: Prepare the server
   hosts: all
   remote_user: root
+  vars:
+    - fqdn: www.untouchable.com
 
   tasks:
   - name: Install Apache
     apt: name=apache2 update_cache=yes state=started
 
-  - name: Install Nmap
-    apt: name=nmap update_cache=yes state=latest
-
-  - name: Enable UFW
-    community.general.ufw:
-      state: enabled
-
-  - name: Allow all access to tcp port 80
-    community.general.ufw:
-      rule: allow
-      port: '80'
-      proto: tcp
-
-  - name: Deny all access to tcp port 443
-    community.general.ufw:
-      rule: reject
-      port: '80'
-      proto: tcp
+  - name: Create a basic Website landing page.
+    template:
+       src: vhost.conf.j2
+       dest: /var/www/html/{{ fqdn }}.conf"
+       mode: 0644
+       owner: root
+       group: root
