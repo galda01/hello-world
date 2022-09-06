@@ -15,7 +15,7 @@
       state: directory
       mode: '0755' 
 
-  - name: Place a demo landing page.
+  - name: Place a demo landing page
     copy:
       src: files/index.html
       dest: "/var/www/html/{{ fqdn }}/public/index.html"
@@ -23,6 +23,14 @@
       group: root
       mode: 0644
        
+  - name: Copy the template vhost file into place
+    template:
+      src: templates/vhost.conf.j2
+      dest: "/etc/apache2/sites-available/{{ fqdn }}.conf"
+      owner: root
+      group: root
+      mode: '0644'
+      
   - name: Create a symbolic link
     ansible.builtin.file:
       src: "/etc/apache2/sites-available/{{ fqdn }}.conf"
