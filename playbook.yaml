@@ -12,7 +12,15 @@
   - name: Create a basic Website landing page.
     template:
        src: vhost.conf.j2
-       dest: /var/www/html/{{ fqdn }}.conf"
+       dest: /etc/apache2/sites-enabled/{ fqdn }}.conf"
        mode: 0644
        owner: root
        group: root
+    notify:
+      - restart_apache2
+
+  handlers:
+    - name: restart_apache2
+      service:
+        name: apache2
+        state: restarted
