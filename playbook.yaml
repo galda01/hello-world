@@ -8,4 +8,4 @@
     apt: name=apache2 update_cache=yes state=latest
 
   - name: Install Nmap
-    apt: name=nmap update_cache=yes state=latest
+    apt: name=nmap update_cache=yes state=latest state:started
