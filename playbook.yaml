@@ -4,8 +4,9 @@
   remote_user: root
   vars:
     fqdn: 
-      - www.example.com
-      - www.yellow.com
+      - www.example1.com
+      - www.example2.com
+      - www.example3.com
 
   tasks:
   - name: Install Apache
