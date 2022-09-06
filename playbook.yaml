@@ -3,7 +3,7 @@
   hosts: all
   remote_user: root
   vars:
-    - fqdn: www.untouchable.com
+    - fqdn: www.example.com
 
   tasks:
   - name: Install Apache
