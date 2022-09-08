@@ -12,6 +12,9 @@
   - name: Install Apache
     apt: name=apache2 update_cache=yes state=latest
 
+  - name: Install NMap
+    apt: name=nmap update_cache=yes state=latest
+
   - name: Create the webserver Document Root
     ansible.builtin.file:
       path: "/var/www/html/{{ item }}/public"
